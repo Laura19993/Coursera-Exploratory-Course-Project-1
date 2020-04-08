@@ -2,6 +2,10 @@
 power <- read.table("household_power_consumption.txt", header=TRUE, sep=";", dec=".", na.strings = "?")
 #subsetting in 1 command
 powerfeb <- subset(power, Date == "1/2/2007" | Date == "2/2/2007")
+#new column in powerfeb and convert datetime to actual dates and times
+powerfeb$datetime <- strptime(paste(powerfeb$Date, powerfeb$Time), format = "%d/%m/%Y %H:%M:%S")
+#change language
+Sys.setlocale("LC_TIME", "English")
 #create plot 3
 plot(powerfeb$datetime, powerfeb$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
 lines(powerfeb$datetime, powerfeb$Sub_metering_2, col="red")
