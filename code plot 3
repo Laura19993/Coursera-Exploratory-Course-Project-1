@@ -1,0 +1,12 @@
+#load data and store in varible "power"
+power <- read.table("household_power_consumption.txt", header=TRUE, sep=";", dec=".", na.strings = "?")
+#subsetting in 1 command
+powerfeb <- subset(power, Date == "1/2/2007" | Date == "2/2/2007")
+#create plot 3
+plot(powerfeb$datetime, powerfeb$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
+lines(powerfeb$datetime, powerfeb$Sub_metering_2, col="red")
+lines(powerfeb$datetime, powerfeb$Sub_metering_3, col="blue")
+legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, lwd=2.5, col=c("black", "red", "blue"))
+#save plot 3
+dev.copy(png, file="plot3.png")
+dev.off()
