@@ -1,0 +1,2 @@
+#load data and store in varible "power"
+power <- read.table("household_power_consumption.txt", header=TRUE, sep=";", dec=".", na.strings = "?")
